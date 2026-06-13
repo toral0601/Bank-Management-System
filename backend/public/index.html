@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Investments Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">🏦</div>
+        <h2>Nexus Invest</h2>
+      </div>
+      <nav class="menu">
+        <button class="nav-item active" onclick="showSection('dashboard', this)">
+          📊 Dashboard
+        </button>
+        <button class="nav-item" onclick="showSection('new-investment', this)">
+          💼 Explore & Invest
+        </button>
+      </nav>
+      <div class="logout">
+        <button class="btn btn-logout" onclick="window.location.reload()">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Section: Dashboard -->
+      <section id="sec-dashboard" class="view-section active">
+        <header>
+          <h1>Portfolio Dashboard</h1>
+          <p>Monitor your active wealth strategies and returns.</p>
+        </header>
+
+        <div class="glass-card">
+          <div class="card-header">
+            <h3>Active Holdings</h3>
+            <button class="btn-refresh" onclick="fetchInvestments()">🔄 Refresh</button>
+          </div>
+          <div class="table-container">
+            <table class="datatable" id="investmentTable">
+              <thead>
+                <tr>
+                  <th>Inv_ID</th>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Projected Returns</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="investmentTableBody">
+                <tr><td colspan="6" class="loading">Fetching portfolio data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: New Investment -->
+      <section id="sec-new-investment" class="view-section">
+        <header>
+          <h1>Explore Opportunities</h1>
+          <p>Review and allocate funds into new, curated investment pools.</p>
+        </header>
+
+        <div class="glass-card form-card">
+          <form id="newInvestmentForm">
+            <div class="form-group">
+              <label for="invType">Investment Asset Class</label>
+              <select id="invType" required>
+                <option value="" disabled selected>Select a fund...</option>
+                <option value="Equity Growth Fund">Equity Growth Fund (High Risk)</option>
+                <option value="Fixed Term Deposit">Fixed Term Deposit (Low Risk)</option>
+                <option value="Real Estate Trust">Real Estate Trust (Medium Risk)</option>
+                <option value="Government Bonds">Government Sovereign Bonds</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="invAmount">Allocation Amount ($)</label>
+              <input type="number" id="invAmount" min="500" placeholder="e.g. 5000" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Lock Investment 🚀</button>
+          </form>
+          <div id="formMsg"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
